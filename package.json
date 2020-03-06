@@ -1,0 +1,18 @@
+{
+    "name": "calculator-rpn",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "jest"
+    },
+    "author": "Argus",
+    "license": "ISC",
+    "dependencies": {
+        "readline": "^1.3.0"
+    },
+    "devDependencies": {
+        "jest": "^25.1.0"
+    }
+}
