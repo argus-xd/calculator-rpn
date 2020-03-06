@@ -1,8 +1,8 @@
-module.exports.numberMerge = arr => {
+module.exports.NumberMerge = arr => {
     let newArr = [];
     arr.forEach(x => {
-        if (isNumber(x)) {
-            if (newArr.length > 0 && isNumber(newArr[newArr.length - 1]))
+        if (this.IsNumber(x)) {
+            if (newArr.length > 0 && this.IsNumber(newArr[newArr.length - 1]))
                 newArr[newArr.length - 1] += x;
             else newArr.push(x);
         } else {
@@ -11,9 +11,9 @@ module.exports.numberMerge = arr => {
     });
     return newArr;
 };
-module.exports.stackInt = arr => {
+module.exports.StackInt = arr => {
     let newArr = arr.map(x => {
-        if (isNumber(x)) {
+        if (this.IsNumber(x)) {
             return parseInt(x);
         } else return x;
     });
@@ -23,7 +23,7 @@ module.exports.IsDelimeter = get => {
     if (["=", " "].indexOf(get) != -1) return true;
     return false;
 };
-module.exports.isNumber = get => {
+module.exports.IsNumber = get => {
     return !isNaN(get);
 };
 module.exports.IsOperator = get => {
@@ -36,6 +36,9 @@ module.exports.IsOperator = get => {
     operators.push(")");
     if (operators.indexOf(get) != -1) return true;
     return false;
+};
+module.exports.LeftAssoc = get => {
+    return get != "^";
 };
 module.exports.GetPriority = get => {
     switch (get) {

@@ -1,16 +1,18 @@
-/* process.stdin.setEncoding("utf8"); */
-var readline = require("readline");
-var calc = require("./calc");
+const readline = require("readline");
+const calc = require("./calc");
+const postFix = require("./postFix");
 
-var rl = readline.createInterface({
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     terminal: false
 });
+/* 
+console.log(calc.postFixCalc("-12 12 +")); */
 
 rl.on("line", function(line) {
     if (line) {
-        let out = calc.calculated(line);
+        let out = calc(line);
         console.log(out);
     }
 });
