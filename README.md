@@ -8,6 +8,6 @@
 
 # Jest test
 
-npm test test/calc
-npm test test/posfixer
-npm test test/operation
+1. npm test test/calc
+2. npm test test/posfixer
+3. npm test test/operation
