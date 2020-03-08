@@ -26,14 +26,14 @@ module.exports.IsDelimeter = get => {
 module.exports.IsNumber = get => {
     return !isNaN(get);
 };
+let operators = [];
+operators.push("+");
+operators.push("-");
+operators.push("/");
+operators.push("*");
+operators.push("(");
+operators.push(")");
 module.exports.IsOperator = get => {
-    let operators = [];
-    operators.push("+");
-    operators.push("-");
-    operators.push("/");
-    operators.push("*");
-    operators.push("(");
-    operators.push(")");
     if (operators.indexOf(get) != -1) return true;
     return false;
 };
