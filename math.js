@@ -1,3 +1,4 @@
+const operation = require("./operation");
 module.exports.NumberMerge = arr => {
     let newArr = [];
     arr.forEach(x => {
@@ -41,22 +42,5 @@ module.exports.LeftAssoc = get => {
     return get != "^";
 };
 module.exports.GetPriority = get => {
-    switch (get) {
-        case "(":
-            return 0;
-        case ")":
-            return 1;
-        case "+":
-            return 2;
-        case "-":
-            return 3;
-        case "*":
-            return 4;
-        case "/":
-            return 4;
-        case "^":
-            return 5;
-        default:
-            return 6;
-    }
+    return operation[get].priority;
 };

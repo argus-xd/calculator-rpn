@@ -28,9 +28,10 @@ class divide extends operations {
 }
 
 let operationsList = [];
-operationsList["+"] = new add(1);
-operationsList["-"] = new substract(1);
-operationsList["*"] = new multiply(2);
-operationsList["/"] = new divide(2);
-
+operationsList["("] = new add(0);
+operationsList[")"] = new add(1);
+operationsList["+"] = new add(2);
+operationsList["-"] = new substract(3);
+operationsList["*"] = new multiply(4);
+operationsList["/"] = new divide(4);
 module.exports = operationsList;
