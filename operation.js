@@ -1,6 +1,5 @@
 class operations {
-    constructor(/* operation, */ priority) {
-        /* this.operation = operation; */
+    constructor(priority) {
         this.priority = priority;
     }
     calc() {}
@@ -26,10 +25,11 @@ class divide extends operations {
         return a / b;
     }
 }
+class bracket extends operations {}
 
 let operationsList = [];
-operationsList["("] = new add(0);
-operationsList[")"] = new add(1);
+operationsList["("] = new bracket(0);
+operationsList[")"] = new bracket(1);
 operationsList["+"] = new add(2);
 operationsList["-"] = new substract(3);
 operationsList["*"] = new multiply(4);
