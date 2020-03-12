@@ -2,7 +2,7 @@ const operation = require("./operation");
 module.exports.NumberMerge = arr => {
     let newArr = [];
     arr.forEach(x => {
-        if (this.IsNumber(x)) {
+        if (this.IsNumber(x) || x == ".") {
             if (newArr.length > 0 && this.IsNumber(newArr[newArr.length - 1]))
                 newArr[newArr.length - 1] += x;
             else newArr.push(x);
