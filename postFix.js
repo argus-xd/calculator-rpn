@@ -11,10 +11,7 @@ module.exports = expr => {
         }
     }
 
-    let tokens = expr.split("");
-    tokens = tokens.filter(e => e != " ");
-    tokens = math.NumberMerge(tokens);
-    tokens = unari(tokens);
+    let tokens = unari(tokens);
 
     let S = [],
         O = [],

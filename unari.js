@@ -8,6 +8,10 @@ module.exports = expr => {
     let saveOp = "";
     let num = false;
     let newToken = [];
+
+    expr = expr.split("").filter(e => e != " ");
+    expr = math.NumberMerge(expr);
+
     expr.forEach((x, i) => {
         if (i == 0 && math.IsOperator(x)) {
             saveOp = x;

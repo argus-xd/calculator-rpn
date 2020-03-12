@@ -17,6 +17,10 @@ test("Decimal: 29 + 6 * 7  / 39 = 30.076", () => {
     expect(calc("29 + 6 * 7  / 39")).toBeCloseTo(30.076);
 });
 
+test("Decimal: 3.34 + 3.14 = 6.48", () => {
+    expect(calc("3.34 + 3.14")).toBeCloseTo(6.48);
+});
+
 test("hooks : 21 + (54-32 * 2) + 2 * 2  / 54 = 11", () => {
     expect(calc("21 + (54-32 * 2) + 2 * 2  / 54")).toBeCloseTo(11.07);
 });
