@@ -1,7 +1,8 @@
-var math = require("./math");
-
+let math = require("./math");
+Array.prototype.peek = function() {
+    return this[this.length - 1];
+};
 module.exports = expr => {
-    var i = 0;
     if (typeof expr !== "string") {
         if (expr instanceof String) {
             expr = expr.toString();
@@ -10,51 +11,49 @@ module.exports = expr => {
         }
     }
 
-    var tokens = expr
+    let tokens = expr
         .replace(/^-|([\^\(\)+\-*/])\s*-/g, "$1#")
         .match(/([\#?\.\w]+)|[\^()+\-*/]/gi)
         .map(e => e.replace("#", "-"));
 
-    var S = [],
+    let S = [],
         O = [],
         tok;
 
     while ((tok = tokens.shift())) {
-        if (tok == "(") S.push(tok);
-        else if (tok == ")") {
-            while (S.length > 0 && S[S.length - 1] != "(") O.push(S.pop());
-            if (S.length == 0) return "Mismatched parenthesis.";
-            S.pop();
-        } else if (math.IsOperator(tok)) {
-            while (
-                S.length > 0 &&
-                math.IsOperator(S[S.length - 1]) &&
-                ((math.LeftAssoc(tok) &&
-                    math.GetPriority(tok) <=
-                        math.GetPriority(S[S.length - 1])) ||
-                    (!math.LeftAssoc(tok) &&
-                        math.GetPriority(tok) <
-                            math.GetPriority(S[S.length - 1])))
-            )
-                O.push(S.pop());
-            S.push(tok);
-        } else {
+        if (math.IsNumber(tok)) {
             O.push(tok);
+        } else if (math.IsOperator(tok)) {
+            if (S.length === 0) {
+                S.push(tok);
+            } else {
+                while (math.GetPriority(S.peek()) >= math.GetPriority(tok)) {
+                    O.push(S.pop());
+
+                    if (S.length === 0) {
+                        break;
+                    }
+                }
+                S.push(tok);
+            }
+        } else if (tok === "(" || tok === ")") {
+            if (tok === "(") {
+                S.push("(");
+            } else {
+                while (S.peek() != "(") {
+                    O.push(S.pop());
+                }
+                S.pop();
+            }
         }
     }
 
-    while (S.length > 0) {
-        if (!math.IsOperator(S[S.length - 1])) return "Mismatched parenthesis.";
-        O.push(S.pop());
+    if (S.length !== 0) {
+        while (S.length !== 0) {
+            O.push(S.pop());
+        }
     }
 
-    if (O.length == 0) return "Invalid expression.";
-
-    var s = "";
-    for (var i = 0; i < O.length; i++) {
-        if (i != 0) s += " ";
-        s += O[i];
-    }
-
-    return s;
+    console.log(O.join(" "));
+    return O.join(" ");
 };

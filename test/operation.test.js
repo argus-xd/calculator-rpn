@@ -13,8 +13,8 @@ test("/", () => {
     expect(math.IsOperator("/")).toBe(true);
 });
 test("(", () => {
-    expect(math.IsOperator("(")).toBe(true);
+    expect(math.IsOperator("(")).toBe(false);
 });
 test(")", () => {
-    expect(math.IsOperator(")")).toBe(true);
+    expect(math.IsOperator(")")).toBe(false);
 });

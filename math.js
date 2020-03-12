@@ -29,7 +29,7 @@ module.exports.IsNumber = get => {
 };
 
 module.exports.IsOperator = get => {
-    if (operation[get]) return true;
+    if (operation.hasOwnProperty(get) && operation[get].operator) return true;
     return false;
 };
 module.exports.LeftAssoc = get => {
