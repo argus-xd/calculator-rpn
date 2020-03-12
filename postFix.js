@@ -11,16 +11,50 @@ module.exports = expr => {
         }
     }
 
-    let tokens = expr
-        .replace(/^-|([\^\(\)+\-*/])\s*-/g, "$1#")
-        .match(/([\#?\.\w]+)|[\^()+\-*/]/gi)
-        .map(e => e.replace("#", "-"));
+    let tokens = expr.split("");
+    tokens = tokens.filter(e => e != " ");
+    tokens = math.NumberMerge(tokens);
+    let saveOp = "";
+    let num = false;
+    let newToken = [];
+    tokens.forEach((x, i) => {
+        if (i == 0 && math.IsOperator(x)) {
+            saveOp = x;
+            num = true;
+        } else if (!math.IsOperator(x) && !math.IsNumber(x)) {
+            saveOp = x;
+            num = true;
+            newToken.push(x);
+        } else if (num && math.IsNumber(x)) {
+            saveOp = math.IsOperator(saveOp) ? saveOp : "";
+            if (saveOp == "+") {
+                newToken.push(saveOp);
+                newToken.push(x);
+            } else {
+                newToken.push(saveOp + /* "i" +  */ x);
+            }
+            num = false;
+        } else if (!math.IsOperator(saveOp) && !math.IsNumber(saveOp)) {
+            /*   if (x == "+") newToken.push(x); */
+            /*  newToken.push(x); */
+            /*  console.log(`${i} === ${saveOp} === ${x}`);      */
+        } else if (math.IsOperator(saveOp) && math.IsOperator(x)) {
+            newToken.push(saveOp);
+            num = true;
+        } else {
+            newToken.push(x);
+        }
+        saveOp = x;
+    });
+    newToken = newToken.filter(
+        (item, pos, arr) => !pos || item !== arr[pos - 1]
+    );
 
     let S = [],
         O = [],
         tok;
 
-    while ((tok = tokens.shift())) {
+    while ((tok = newToken.shift())) {
         if (math.IsNumber(tok)) {
             O.push(tok);
         } else if (math.IsOperator(tok)) {
@@ -53,6 +87,8 @@ module.exports = expr => {
             O.push(S.pop());
         }
     }
+
+    /*   console.log(test);  */
 
     console.log(O.join(" "));
     return O.join(" ");
