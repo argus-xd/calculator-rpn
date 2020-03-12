@@ -20,7 +20,7 @@ module.exports = expr => {
         O = [],
         tok;
 
-    while ((tok = newToken.shift())) {
+    while ((tok = tokens.shift())) {
         if (math.IsNumber(tok)) {
             O.push(tok);
         } else if (math.IsOperator(tok)) {
@@ -53,8 +53,6 @@ module.exports = expr => {
             O.push(S.pop());
         }
     }
-
-    /*   console.log(test);  */
 
     console.log(O.join(" "));
     return O.join(" ");

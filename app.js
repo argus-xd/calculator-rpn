@@ -6,7 +6,6 @@ const rl = readline.createInterface({
     output: process.stdout,
     terminal: false
 });
-
 rl.on("line", function(line) {
     if (line) {
         let out = calc(line);

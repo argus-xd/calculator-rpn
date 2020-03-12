@@ -1,5 +1,9 @@
 const math = require("./math");
 
+this.isDubling = get => {
+    return get.filter((item, pos, arr) => !pos || item !== arr[pos - 1]);
+};
+
 module.exports = expr => {
     let saveOp = "";
     let num = false;
@@ -18,13 +22,11 @@ module.exports = expr => {
                 newToken.push(saveOp);
                 newToken.push(x);
             } else {
-                newToken.push(saveOp + /* "i" +  */ x);
+                newToken.push(saveOp + x);
             }
             num = false;
         } else if (!math.IsOperator(saveOp) && !math.IsNumber(saveOp)) {
-            /*   if (x == "+") newToken.push(x); */
             /*  newToken.push(x); */
-            /*  console.log(`${i} === ${saveOp} === ${x}`);      */
         } else if (math.IsOperator(saveOp) && math.IsOperator(x)) {
             newToken.push(saveOp);
             num = true;
@@ -33,8 +35,6 @@ module.exports = expr => {
         }
         saveOp = x;
     });
-    newToken = newToken.filter(
-        (item, pos, arr) => !pos || item !== arr[pos - 1]
-    );
+    newToken = this.isDubling(newToken);
     return newToken;
 };
