@@ -32,9 +32,6 @@ module.exports.IsOperator = get => {
     if (operation.hasOwnProperty(get) && operation[get].operator) return true;
     return false;
 };
-module.exports.LeftAssoc = get => {
-    return get != "^";
-};
 module.exports.GetPriority = get => {
     return operation[get].priority;
 };
