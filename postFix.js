@@ -1,7 +1,6 @@
-let math = require("./math");
-Array.prototype.peek = function() {
-    return this[this.length - 1];
-};
+const math = require("./math");
+require("./peek");
+
 module.exports = expr => {
     if (typeof expr !== "string") {
         if (expr instanceof String) {
