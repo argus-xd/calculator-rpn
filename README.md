@@ -11,3 +11,4 @@
 1. npm test test/calc
 2. npm test test/posfixer
 3. npm test test/operation
+4. npm test test/unari
