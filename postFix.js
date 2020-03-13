@@ -1,16 +1,8 @@
 const math = require("./math");
 const unari = require("./unari");
-require("./peek");
+require("./arrCom");
 
 module.exports = expr => {
-    if (typeof expr !== "string") {
-        if (expr instanceof String) {
-            expr = expr.toString();
-        } else {
-            return "Invalid expression.";
-        }
-    }
-
     let tokens = unari(expr);
 
     let S = [],
@@ -51,6 +43,5 @@ module.exports = expr => {
         }
     }
 
-    console.log(O.join(" "));
     return O.join(" ");
 };

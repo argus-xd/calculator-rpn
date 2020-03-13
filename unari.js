@@ -1,16 +1,13 @@
 const math = require("./math");
-
-this.isDubling = get => {
-    return get.filter((item, pos, arr) => !pos || item !== arr[pos - 1]);
-};
+const arrCom = require("./arrCom");
 
 module.exports = expr => {
     let saveOp = "";
     let num = false;
     let newToken = [];
 
-    expr = expr.split("").filter(e => e != " ");
-    expr = math.NumberMerge(expr);
+    expr = arrCom.ClaerExpr(expr);
+    expr = arrCom.NumberMerge(expr);
 
     expr.forEach((x, i) => {
         if (i == 0 && math.IsOperator(x)) {
@@ -41,6 +38,6 @@ module.exports = expr => {
         }
         saveOp = x;
     });
-    newToken = this.isDubling(newToken);
+    newToken = arrCom.isDubling(newToken);
     return newToken;
 };

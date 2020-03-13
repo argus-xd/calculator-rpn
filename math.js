@@ -1,29 +1,5 @@
 const operation = require("./operation");
-module.exports.NumberMerge = arr => {
-    let newArr = [];
-    arr.forEach(x => {
-        if (this.IsNumber(x) || x == ".") {
-            if (newArr.length > 0 && this.IsNumber(newArr[newArr.length - 1]))
-                newArr[newArr.length - 1] += x;
-            else newArr.push(x);
-        } else {
-            newArr.push(x);
-        }
-    });
-    return newArr;
-};
-module.exports.StackInt = arr => {
-    let newArr = arr.map(x => {
-        if (this.IsNumber(x)) {
-            return parseInt(x);
-        } else return x;
-    });
-    return newArr;
-};
-module.exports.IsDelimeter = get => {
-    if (["=", " "].indexOf(get) != -1) return true;
-    return false;
-};
+
 module.exports.IsNumber = get => {
     return !isNaN(get);
 };

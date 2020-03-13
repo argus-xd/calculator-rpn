@@ -1,8 +1,10 @@
 const math = require("./math");
 const postFix = require("./postFix");
 const operation = require("./operation");
+const expression = require("./expression");
 
-module.exports.PostFixCalc = expr => {
+this.PostFixCalc = expr => {
+    expr = expression(expr);
     let postfixExpr = postFix(expr);
     let operandStack = [];
     let arrToken = postfixExpr.split(" ");
@@ -16,9 +18,6 @@ module.exports.PostFixCalc = expr => {
             let result = "";
             if (math.IsOperator(token)) {
                 result = operation[token].calc(a, b);
-            } else {
-                console.log(`Оператор ${token} не определён`);
-                return;
             }
             operandStack.push(result);
         }
