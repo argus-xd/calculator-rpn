@@ -38,6 +38,6 @@ module.exports = expr => {
         }
         saveOp = x;
     });
-    newToken = arrCom.isDubling(newToken);
+    newToken = arrCom.IsDubling(newToken);
     return newToken;
 };

@@ -1,9 +1,9 @@
 const math = require("./math");
-const unari = require("./unari");
+const unary = require("./unary");
 require("./arrCom");
 
 module.exports = expr => {
-    let tokens = unari(expr);
+    let tokens = unary(expr);
 
     let S = [],
         O = [],

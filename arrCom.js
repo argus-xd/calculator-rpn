@@ -30,7 +30,7 @@ module.exports.IsDelimeter = get => {
     return false;
 };
 
-module.exports.isDubling = get => {
+module.exports.IsDubling = get => {
     return get.filter((item, pos, arr) => !pos || item !== arr[pos - 1]);
 };
 
