@@ -30,7 +30,9 @@ module.exports = expr => {
             }
             num = false;
         } else if (!math.IsOperator(saveOp) && !math.IsNumber(saveOp)) {
-            /*  newToken.push(x); */
+            if (!math.IsOperator(expr[i + 1]) && !math.IsNumber(expr[i + 1])) {
+                newToken.push(x);
+            }
         } else if (math.IsOperator(saveOp) && math.IsOperator(x)) {
             newToken.push(saveOp);
             num = true;

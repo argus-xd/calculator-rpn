@@ -11,7 +11,7 @@ module.exports = expr => {
         }
     }
 
-    let tokens = unari(tokens);
+    let tokens = unari(expr);
 
     let S = [],
         O = [],
